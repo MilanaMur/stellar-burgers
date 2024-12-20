@@ -44,3 +44,6 @@ export const newOrderSlice = createSlice({
       });
   }
 });
+
+export const { resetOrder } = newOrderSlice.actions;
+export const { getOrderRequest, getOrderModalData } = newOrderSlice.selectors;

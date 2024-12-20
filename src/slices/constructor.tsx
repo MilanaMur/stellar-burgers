@@ -33,10 +33,17 @@ export const constructorSlice = createSlice({
     },
     clearAll(state: TConstructorState) {
       state = initialState;
+    },
+    updateAll: (
+      state: TConstructorState,
+      action: PayloadAction<TConstructorIngredient[]>
+    ) => {
+      state.ingredients = action.payload;
     }
   },
   selectors: { selectItems: (state: TConstructorState) => state }
 });
 
-export const { addItem, deleteItem, clearAll } = constructorSlice.actions;
+export const { addItem, deleteItem, clearAll, updateAll } =
+  constructorSlice.actions;
 export const constructorSelector = constructorSlice.selectors;
