@@ -29,7 +29,9 @@ export const constructorSlice = createSlice({
       state: TConstructorState,
       action: PayloadAction<TConstructorIngredient>
     ) {
-      state.ingredients.filter((item) => item.id !== action.payload.id);
+      state.ingredients = state.ingredients.filter(
+        (item) => item.id !== action.payload.id
+      );
     },
     clearAll(state: TConstructorState) {
       state = initialState;
