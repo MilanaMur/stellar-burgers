@@ -3,19 +3,13 @@ import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 
-export const OrderInfo: FC = () => {
-  /** TODO: взять переменные orderData и ingredients из стора */
-  const orderData = {
-    createdAt: '',
-    ingredients: [],
-    _id: '',
-    status: '',
-    name: '',
-    updatedAt: 'string',
-    number: 0
-  };
+import { useSelector } from '../../services/store';
+import { getIngredients } from '../../slices/ingredients';
+import { getOrderModalData } from '../../slices/newOrder';
 
-  const ingredients: TIngredient[] = [];
+export const OrderInfo: FC = () => {
+  const orderData = useSelector(getOrderModalData);
+  const ingredients = useSelector(getIngredients);
 
   /* Готовим данные для отображения */
   const orderInfo = useMemo(() => {
