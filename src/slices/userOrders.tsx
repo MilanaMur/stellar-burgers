@@ -35,3 +35,5 @@ export const userOrdersSlice = createSlice({
       });
   }
 });
+
+export const { listOfOrders } = userOrdersSlice.selectors;
