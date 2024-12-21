@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Preloader } from '../ui/preloader';
 import { IngredientDetailsUI } from '../ui/ingredient-details';
 
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../services/store';
 import { getIngredientsState } from '../../slices/ingredients';
 import { useParams } from 'react-router-dom';
 

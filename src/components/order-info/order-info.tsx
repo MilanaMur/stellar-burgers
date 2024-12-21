@@ -3,13 +3,12 @@ import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 
+import { useSelector } from '../../services/store';
 import { getIngredients } from '../../slices/ingredients';
-import { useSelector } from 'react-redux';
 import { getOrderModalData } from '../../slices/newOrder';
 
 export const OrderInfo: FC = () => {
   const orderData = useSelector(getOrderModalData);
-
   const ingredients = useSelector(getIngredients);
 
   /* Готовим данные для отображения */
