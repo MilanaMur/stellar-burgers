@@ -15,11 +15,21 @@ import styles from './app.module.css';
 import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { ProtectedRoute } from '../protected-route';
+import { useEffect } from 'react';
+import { useDispatch } from '../../services/store';
+import { getIngredientsList } from '../../slices/ingredients';
+import { getUserApis } from '../../slices/user';
 
 const App = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const background = location.state?.background;
+
+  useEffect(() => {
+    dispatch(getIngredientsList());
+    dispatch(getUserApis());
+  }, []);
 
   return (
     <div className={styles.app}>

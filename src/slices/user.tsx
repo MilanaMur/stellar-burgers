@@ -8,7 +8,7 @@ import {
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { TUser } from '@utils-types';
 
-export const GetUser = createAsyncThunk('user/getuser', getUserApi);
+export const getUserApis = createAsyncThunk('user/getuser', getUserApi);
 export const updateUser = createAsyncThunk('user/update', updateUserApi);
 export const register = createAsyncThunk('user/register', registerUserApi);
 export const login = createAsyncThunk('user/login', loginUserApi);
@@ -67,11 +67,11 @@ export const userSlice = createSlice({
         state.error = '';
       });
     builder
-      .addCase(GetUser.fulfilled, (state, action) => {
+      .addCase(getUserApis.fulfilled, (state, action) => {
         state.isAuthChecked = true;
         state.user = action.payload.user;
       })
-      .addCase(GetUser.rejected, (state, action) => {
+      .addCase(getUserApis.rejected, (state, action) => {
         state.isAuthChecked = false;
         state.error = action.error.message!;
       });

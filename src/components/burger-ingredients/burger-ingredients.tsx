@@ -23,25 +23,9 @@ export const BurgerIngredients: FC = () => {
   const titleMainRef = useRef<HTMLHeadingElement>(null);
   const titleSaucesRef = useRef<HTMLHeadingElement>(null);
 
-  const [bunsRef, inViewBuns] = useInView({
-    threshold: 0
-  });
-
-  const [mainsRef, inViewFilling] = useInView({
-    threshold: 0
-  });
-
-  const [saucesRef, inViewSauces] = useInView({
-    threshold: 0
-  });
-
-  if (error) {
-    return <p>Упс... Что-то пошло не так...</p>;
-  }
-
-  if (loading) {
-    return <Preloader />;
-  }
+  const [bunsRef, inViewBuns] = useInView({ threshold: 0 });
+  const [mainsRef, inViewFilling] = useInView({ threshold: 0 });
+  const [saucesRef, inViewSauces] = useInView({ threshold: 0 });
 
   useEffect(() => {
     if (inViewBuns) {
@@ -64,18 +48,24 @@ export const BurgerIngredients: FC = () => {
   };
 
   return (
-    <BurgerIngredientsUI
-      currentTab={currentTab}
-      buns={buns}
-      mains={mains}
-      sauces={sauces}
-      titleBunRef={titleBunRef}
-      titleMainRef={titleMainRef}
-      titleSaucesRef={titleSaucesRef}
-      bunsRef={bunsRef}
-      mainsRef={mainsRef}
-      saucesRef={saucesRef}
-      onTabClick={onTabClick}
-    />
+    <>
+      {error && <p>Упс... Что-то пошло не так...</p>}
+      {loading && <Preloader />}
+      {!error && !loading && (
+        <BurgerIngredientsUI
+          currentTab={currentTab}
+          buns={buns}
+          mains={mains}
+          sauces={sauces}
+          titleBunRef={titleBunRef}
+          titleMainRef={titleMainRef}
+          titleSaucesRef={titleSaucesRef}
+          bunsRef={bunsRef}
+          mainsRef={mainsRef}
+          saucesRef={saucesRef}
+          onTabClick={onTabClick}
+        />
+      )}
+    </>
   );
 };
