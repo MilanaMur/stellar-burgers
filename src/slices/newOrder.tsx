@@ -10,12 +10,13 @@ export const createNewOrder = createAsyncThunk(
 type TNewOrderState = {
   orderRequest: boolean;
   orderModalData: TOrder | null;
-  error: string | null | undefined;
+  error: string | undefined;
 };
+
 const initialState: TNewOrderState = {
   orderRequest: false,
   orderModalData: null,
-  error: null
+  error: undefined
 };
 
 export const newOrderSlice = createSlice({
@@ -23,7 +24,8 @@ export const newOrderSlice = createSlice({
   initialState,
   reducers: {
     resetOrder: (state) => {
-      state = initialState;
+      state.orderRequest = false;
+      state.orderModalData = null;
     }
   },
   selectors: {

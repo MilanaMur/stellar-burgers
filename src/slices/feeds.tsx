@@ -9,7 +9,7 @@ type TFeedsState = {
   total: number;
   totalToday: number;
   isLoading: boolean;
-  error: string | null | undefined;
+  error: string | undefined;
 };
 
 const initialState: TFeedsState = {
@@ -17,7 +17,7 @@ const initialState: TFeedsState = {
   total: 0,
   totalToday: 0,
   isLoading: true,
-  error: null
+  error: undefined
 };
 
 export const feedsSlice = createSlice({

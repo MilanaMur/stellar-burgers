@@ -33,12 +33,12 @@ export const BurgerConstructor: FC = () => {
     ];
 
     dispatch(createNewOrder(orderData));
+    dispatch(clearAll());
   };
 
   const closeOrderModal = () => {
     dispatch(resetOrder());
-    dispatch(clearAll());
-    navigate('/');
+    // navigate('/');
   };
 
   const price = useMemo(

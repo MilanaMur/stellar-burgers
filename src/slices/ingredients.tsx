@@ -8,7 +8,7 @@ export const getIngredientsList = createAsyncThunk(
 );
 
 type TIngredientsState = {
-  ingredients: Array<TIngredient>;
+  ingredients: TIngredient[];
   loading: boolean;
   error: string | null | undefined;
 };
