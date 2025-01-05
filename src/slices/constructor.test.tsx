@@ -2,22 +2,19 @@ import { describe, test, expect } from '@jest/globals';
 import {
   TConstructorState,
   constructorSlice,
+  initialState,
   addItem,
   deleteItem,
   swapIngredient,
   clearAll
 } from './constructor';
 import { testMainIngredient1, testMainIngredient2, testBun } from './testData';
+import { ingredientsSlice } from './ingredients';
 
 describe('Тесты constructorSlice', () => {
-  const testInitialState: TConstructorState = {
-    bun: null,
-    ingredients: []
-  };
-
   test('Добавление main ингредиента', () => {
     const newState = constructorSlice.reducer(
-        testInitialState,
+      initialState,
       addItem(testMainIngredient1)
     );
 
@@ -29,7 +26,7 @@ describe('Тесты constructorSlice', () => {
   });
 
   test('Добавление bun', () => {
-    const newState = constructorSlice.reducer(testInitialState, addItem(testBun));
+    const newState = constructorSlice.reducer(initialState, addItem(testBun));
 
     expect(newState.bun).toEqual({
       ...testBun,
@@ -39,7 +36,7 @@ describe('Тесты constructorSlice', () => {
 
   test('Удаление ингредиента', () => {
     const newState = constructorSlice.reducer(
-        testInitialState,
+      initialState,
       deleteItem(testMainIngredient1)
     );
 
@@ -88,12 +85,15 @@ describe('Тесты constructorSlice', () => {
 
   test('Очистка конструктора', () => {
     const initialState: TConstructorState = {
-        bun: testBun,
-        ingredients: [testMainIngredient1, testMainIngredient2]
-      };
+      bun: testBun,
+      ingredients: [testMainIngredient1, testMainIngredient2]
+    };
 
-     const newState = constructorSlice.reducer(initialState, clearAll());
+    const newState = constructorSlice.reducer(initialState, clearAll());
 
-     expect(newState).toEqual(testInitialState);
-  })
+    expect(newState).toEqual({
+      bun: null,
+      ingredients: []
+    });
+  });
 });

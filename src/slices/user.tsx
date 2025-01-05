@@ -14,13 +14,13 @@ export const register = createAsyncThunk('user/register', registerUserApi);
 export const login = createAsyncThunk('user/login', loginUserApi);
 export const logout = createAsyncThunk('user/logout', logoutApi);
 
-type TUserState = {
+export type TUserState = {
   isAuthChecked: boolean;
   user: TUser;
   error: string | null;
 };
 
-const initialState: TUserState = {
+export const initialState: TUserState = {
   isAuthChecked: false,
   user: {
     email: '',
@@ -44,19 +44,19 @@ export const userSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.isAuthChecked = true;
         state.user = action.payload.user;
-        state.error = '';
+        state.error = null;
       })
       .addCase(register.rejected, (state, action) => {
         state.error = action.error.message!;
       })
       .addCase(register.pending, (state) => {
-        state.error = '';
+        state.error = null;
       });
     builder
       .addCase(login.fulfilled, (state, action) => {
         state.isAuthChecked = true;
         state.user = action.payload.user;
-        state.error = '';
+        state.error = null;
       })
       .addCase(login.rejected, (state, action) => {
         state.isAuthChecked = false;
@@ -64,7 +64,7 @@ export const userSlice = createSlice({
       })
       .addCase(login.pending, (state) => {
         state.isAuthChecked = false;
-        state.error = '';
+        state.error = null;
       });
     builder
       .addCase(getUserApis.fulfilled, (state, action) => {
@@ -85,7 +85,7 @@ export const userSlice = createSlice({
         state.error = action.error.message!;
       })
       .addCase(updateUser.pending, (state) => {
-        state.error = '';
+        state.error = null;
       });
     builder.addCase(logout.fulfilled, (state) => {
       state.isAuthChecked = false;

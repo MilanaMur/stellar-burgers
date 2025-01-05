@@ -4,7 +4,7 @@ import { getFeedsApi } from '@api';
 
 export const getAllFeeds = createAsyncThunk('orders/getAll', getFeedsApi);
 
-type TFeedsState = {
+export type TFeedsState = {
   orders: TOrder[];
   total: number;
   totalToday: number;
@@ -12,11 +12,11 @@ type TFeedsState = {
   error: string | undefined;
 };
 
-const initialState: TFeedsState = {
+export const initialState: TFeedsState = {
   orders: [],
   total: 0,
   totalToday: 0,
-  isLoading: true,
+  isLoading: false,
   error: undefined
 };
 

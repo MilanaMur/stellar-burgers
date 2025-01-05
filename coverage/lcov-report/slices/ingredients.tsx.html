@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.46% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>46/52</span>
+                <span class='fraction'>52/52</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.46% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>46/52</span>
+                <span class='fraction'>52/52</span>
             </div>
         
             
@@ -146,20 +146,20 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -176,13 +176,13 @@ export const getIngredientsList = createAsyncThunk(
   getIngredientsApi
 );
 &nbsp;
-type TIngredientsState = {
+export type TIngredientsState = {
   ingredients: TIngredient[];
   loading: boolean;
   error: string | null | undefined;
 };
 &nbsp;
-const initialState: TIngredientsState = {
+export const initialState: TIngredientsState = {
   ingredients: [],
   loading: false,
   error: null
@@ -193,23 +193,23 @@ export const ingredientsSlice = createSlice({
   initialState,
   reducers: {},
   selectors: {
-    getIngredientsState: <span class="fstat-no" title="function not covered" >(state) =&gt; state,</span>
-    getIngredientsLoadingState: <span class="fstat-no" title="function not covered" >(state) =&gt; state.</span>loading,
-    getIngredients: <span class="fstat-no" title="function not covered" >(state) =&gt; state.</span>ingredients
+    getIngredientsState: (state) =&gt; state,
+    getIngredientsLoadingState: (state) =&gt; state.loading,
+    getIngredients: (state) =&gt; state.ingredients
   },
   extraReducers: (builder) =&gt; {
     builder
-      .addCase(getIngredientsList.pending, (state) =&gt; {
-<span class="cstat-no" title="statement not covered" >        state.loading = true;</span>
-<span class="cstat-no" title="statement not covered" >        state.error = null;</span>
+      .addCase(getIngredientsList.fulfilled, (state, action) =&gt; {
+        state.loading = false;
+        state.ingredients = action.payload;
       })
       .addCase(getIngredientsList.rejected, (state, action) =&gt; {
-<span class="cstat-no" title="statement not covered" >        state.loading = false;</span>
-<span class="cstat-no" title="statement not covered" >        state.error = action.error.message;</span>
+        state.loading = false;
+        state.error = action.error.message;
       })
-      .addCase(getIngredientsList.fulfilled, (state, action) =&gt; {
-<span class="cstat-no" title="statement not covered" >        state.loading = false;</span>
-<span class="cstat-no" title="statement not covered" >        state.ingredients = action.payload;</span>
+      .addCase(getIngredientsList.pending, (state) =&gt; {
+        state.loading = true;
+        state.error = null;
       });
   }
 });
@@ -226,7 +226,7 @@ export const {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-01-05T14:26:01.415Z
+                at 2025-01-05T20:50:35.014Z
             </div>
         <script src="../prettify.js"></script>
         <script>
