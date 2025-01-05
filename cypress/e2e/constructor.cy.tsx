@@ -1,4 +1,5 @@
 describe('Тесты е2е для главной страницы и модального окна', () => {
+  const testUrl = 'http://localhost:4000';
   const ingredientSelector = '[data-cy="ingredient"]';
   const ingredientModalSelector = '[data-cy="ingredient-modal"]';
 
@@ -13,7 +14,7 @@ describe('Тесты е2е для главной страницы и модал�
     window.localStorage.setItem('refreshToken', 'testRefreshToken');
     cy.setCookie('accessToken', 'testAccessToken');
 
-    cy.visit('http://localhost:4000');
+    cy.visit(testUrl);
 
     cy.wait('@getIngredients');
     cy.wait('@getUser');
