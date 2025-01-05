@@ -7,13 +7,13 @@ export const getIngredientsList = createAsyncThunk(
   getIngredientsApi
 );
 
-type TIngredientsState = {
+export type TIngredientsState = {
   ingredients: TIngredient[];
   loading: boolean;
   error: string | null | undefined;
 };
 
-const initialState: TIngredientsState = {
+export const initialState: TIngredientsState = {
   ingredients: [],
   loading: false,
   error: null
@@ -30,17 +30,17 @@ export const ingredientsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getIngredientsList.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+      .addCase(getIngredientsList.fulfilled, (state, action) => {
+        state.loading = false;
+        state.ingredients = action.payload;
       })
       .addCase(getIngredientsList.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })
-      .addCase(getIngredientsList.fulfilled, (state, action) => {
-        state.loading = false;
-        state.ingredients = action.payload;
+      .addCase(getIngredientsList.pending, (state) => {
+        state.loading = true;
+        state.error = null;
       });
   }
 });

@@ -4,12 +4,12 @@ import { TOrder } from '@utils-types';
 
 export const getUserOrders = createAsyncThunk('orders/ofUser', getOrdersApi);
 
-type TUserOrdersState = {
+export type TUserOrdersState = {
   orders: TOrder[];
   isLoading: boolean;
 };
 
-const initialState: TUserOrdersState = {
+export const initialState: TUserOrdersState = {
   orders: [],
   isLoading: true
 };
@@ -27,11 +27,11 @@ export const userOrdersSlice = createSlice({
         state.orders = action.payload;
         state.isLoading = false;
       })
-      .addCase(getUserOrders.pending, (state) => {
-        state.isLoading = true;
-      })
       .addCase(getUserOrders.rejected, (state) => {
         state.isLoading = false;
+      })
+      .addCase(getUserOrders.pending, (state) => {
+        state.isLoading = true;
       });
   }
 });
