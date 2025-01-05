@@ -96,7 +96,7 @@ const config: Config = {
     '^@ui(.*)$': '<rootDir>/src/components/ui$1',
     '^@ui-pages(.*)$': '<rootDir>/src/components/ui/pages$1',
     '^@utils-types(.*)$': '<rootDir>/src/utils/types$1',
-    '^@api$': '<rootDir>/src/utils/burger-api.ts',
+    '^@api$': '<rootDir>/src/utils/burger-api.ts'
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader

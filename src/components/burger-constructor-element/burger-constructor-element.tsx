@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from '../../services/store';
 import {
   constructorSelector,
   deleteItem,
+  swapIngredient,
   updateAll
 } from '../../slices/constructor';
 import { TConstructorIngredient } from '@utils-types';
@@ -26,13 +27,11 @@ export const BurgerConstructorElement: FC<BurgerConstructorElementProps> = memo(
     };
 
     const handleMoveDown = () => {
-      dispatch(updateAll(swapElements(constructorItems.ingredients, index, 1)));
+      dispatch(swapIngredient({ index: index, step: 1 }));
     };
 
     const handleMoveUp = () => {
-      dispatch(
-        updateAll(swapElements(constructorItems.ingredients, index, -1))
-      );
+      dispatch(swapIngredient({ index: index, step: -1 }));
     };
 
     const handleClose = () => {
