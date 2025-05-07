@@ -48,6 +48,6 @@
 3. Создайте файл `.env` для корректной работы запросов к серверу со следующей переменной:
 `BURGER_API_URL=https://norma.nomoreparties.space/api` 
 4. Установите зависимости:
-`npm install или yarn`
+`npm install`
 5. Запустите проект:
-`npm run start или yarn start`
+`npm run start`
